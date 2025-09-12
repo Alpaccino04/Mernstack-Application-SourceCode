@@ -22,10 +22,10 @@ spec:
         role: api
     spec:
       imagePullSecrets:
-      - name: ecr-registry-secret
+      - name: gcp-artifact-registry-secret  # updated for GCP
       containers:
       - name: api
-        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:1
+        image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/backend-repo/backend:1  # updated for GCP
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
