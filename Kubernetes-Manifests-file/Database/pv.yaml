@@ -4,10 +4,12 @@ metadata:
   name: mongo-pv
   namespace: three-tier
 spec:
-  capacity: 
+  capacity:
     storage: 1Gi
-  volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: /data/db
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard  # GCP default StorageClass
+  gcePersistentDisk:
+    pdName: mongo-disk        # name of the GCP Persistent Disk
+    fsType: ext4
