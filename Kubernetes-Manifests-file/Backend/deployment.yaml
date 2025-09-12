@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v2
 kind: Deployment
 metadata:
   name: api
@@ -11,7 +11,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
+      maxSurge: 2
       maxUnavailable: 25%
   selector:
     matchLabels:
@@ -25,11 +25,11 @@ spec:
       - name: gcp-artifact-registry-secret  # updated for GCP
       containers:
       - name: api
-        image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/backend-repo/backend:1  # updated for GCP
+        image: us-central2-docker.pkg.dev/fair-plasma-441014-q1/backend-repo/backend:1  # updated for GCP
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
-            value: mongodb://mongodb-svc:27017/todo?directConnection=true
+            value: mongodb://mongodb-svc:27027/todo?directConnection=true
           - name: MONGO_USERNAME
             valueFrom:
               secretKeyRef:
@@ -54,11 +54,11 @@ spec:
             port: 3500
           initialDelaySeconds: 5
           periodSeconds: 5
-          successThreshold: 1
+          successThreshold: 2
         startupProbe:
           httpGet:
             path: /started
             port: 3500
           initialDelaySeconds: 0
-          periodSeconds: 10
+          periodSeconds: 20
           failureThreshold: 30
