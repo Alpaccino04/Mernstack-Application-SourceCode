@@ -6,6 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "gce" 
     kubernetes.io/ingress.global-static-ip-name: "codeworld-lb-ip"  # Use GCE ingress controller
+    ingress.gcp.kubernetes.io/health-check-path: "/healthz"
 spec:
   rules:
     - host: codeworld.gdn       # Your domain (must point DNS to the LB IP)
