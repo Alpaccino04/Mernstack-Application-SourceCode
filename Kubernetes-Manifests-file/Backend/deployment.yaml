@@ -25,7 +25,7 @@ spec:
       - name: gcp-artifact-registry-secret  # updated for GCP
       containers:
       - name: api
-        image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/backend-repo/backend:1  # updated for GCP
+        image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/backend-repo/backend:latest  # updated for GCP
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
