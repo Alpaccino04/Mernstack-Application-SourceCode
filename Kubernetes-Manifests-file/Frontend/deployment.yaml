@@ -25,10 +25,10 @@ spec:
       - name: gcp-registry-secret   # updated for GCP Artifact Registry
       containers:
       - name: frontend
-        image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/frontend-repo/frontend:3
+        image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/frontend-repo/frontend@sha256:1852c1f1e0b3f85bfe2163371293b26579405b9f9171fd9c86afe1e687e473a7
         imagePullPolicy: Always
         env:
           - name: REACT_APP_BACKEND_URL
-            value: "http://api:5000/api/tasks"
+            value: "http://api:3500/api/tasks"
         ports:
         - containerPort: 3000
