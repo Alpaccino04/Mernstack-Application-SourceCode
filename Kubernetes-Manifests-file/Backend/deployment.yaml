@@ -22,7 +22,7 @@ spec:
         role: api
     spec:
       imagePullSecrets:
-      - name: gcp-artifact-registry-secret  # updated for GCP
+      - name: gcp-artifact-registry-secret
       containers:
       - name: api
         image: us-central1-docker.pkg.dev/fair-plasma-441014-q1/backend-repo/backend@sha256:df3ba8918b83afdaf4817368d37d34182423de1e1d93d62d2192ad4ef2478e8e
@@ -50,8 +50,9 @@ spec:
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /healthz   # changed from /ready
+            path: /healthz   # minimal change for LB
             port: 3500
           initialDelaySeconds: 5
-          periodSeconds: 5
-          successThreshold: 2
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
